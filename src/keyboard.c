@@ -1,6 +1,7 @@
-﻿#include "keyboard.h"  
+#include "keyboard.h"  
 #include "source.h"
 #include <sys/io.h>
+
 
 int clicked = 0;
 int canSend = 0;
@@ -215,5 +216,5 @@ void keyboard_handler()
             print_char(character, YELLOW);
         }
     }
-
 }
+
