@@ -1,9 +1,16 @@
 #include "keyboard.h"  
+<<<<<<< HEAD
 //#include "source.h"
 #include <sys/io.h>
 
 //unsigned short* terminal_buffer;
 //unsigned int vga_index;
+=======
+#include "source.h"
+#include <sys/io.h>
+
+
+>>>>>>> 136e6bb (new updates)
 int clicked = 0;
 int canSend = 0;
 unsigned short* terminal_buffer;
