@@ -1,10 +1,23 @@
 #include "keyboard.h"  
-#include "source.h"
+//#include "source.h"
 #include <sys/io.h>
 
-
+//unsigned short* terminal_buffer;
+//unsigned int vga_index;
 int clicked = 0;
 int canSend = 0;
+unsigned short* terminal_buffer;
+unsigned int vga_index;
+
+void print_char(char str, unsigned char color)
+{
+    int index = 0;
+    
+    terminal_buffer[vga_index] = str | (unsigned short)color << 8;
+    index++;
+    vga_index++;
+}
+
 
 unsigned char get_scancode()
 {
@@ -12,7 +25,6 @@ unsigned char get_scancode()
     inputdata = inb(0x60);
     return inputdata;
 }
-
 
 
 void keyboard_handler()
