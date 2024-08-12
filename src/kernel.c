@@ -3,22 +3,27 @@
  * kernel.c - version 0.0.1
  * 
  */
-//#include "keyboard.h"
+#include "keyboard.h"
 
 
 #define WHITE_TXT 0x07 /* light gray on black text */
 
 void clear_screen();
 unsigned int x_printf(char *message, unsigned int line);
+unsigned short* terminal_buffer1;
+unsigned int vga_index1;
+
 
 /* simple kernel written in C */
 void main() 
 {
+	terminal_buffer1 = (unsigned short*)VGA_ADDRESS;
 	clear_screen();
-	x_printf("Hello, world! Welcome to my xKernel.", 0);
-   // while (1) {
-     //   keyboard_handler();
-    //}
+	print_string("Hello, world! Welcome to my xKernel.", YELLOW);
+	vga_index1 = 80;
+    while (1) {
+        keyboard_handler();
+    }
 };
 
 /* clear_screen : to clear the entire text screen */
@@ -34,6 +39,16 @@ void clear_screen()
 		i++;
 	};
 };
+
+void print_string(char* str, unsigned char color)
+{
+    int index = 0;
+    while (str[index]) {
+        terminal_buffer1[vga_index1] = (unsigned short)str[index] | (unsigned short)color << 8;
+        index++;
+        vga_index1++;
+    }
+}
 
 /* x_printf : the message and the line # */
 unsigned int x_printf(char *message, unsigned int line)
