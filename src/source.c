@@ -1,6 +1,5 @@
 ﻿#include "source.h"  
-<<<<<<< HEAD
-=======
+
 
 #define VGA_ADDRESS 0xB8000 
 
@@ -12,7 +11,6 @@
 
 unsigned short* terminal_buffer;
 unsigned int vga_index;
->>>>>>> 136e6bb (new updates)
 
 /*
 void clear_screen(void)
@@ -43,8 +41,4 @@ void print_char(char str, unsigned char color)
     terminal_buffer[vga_index] = str | (unsigned short)color << 8;
     index++;
     vga_index++;
-<<<<<<< HEAD
-=======
-    
->>>>>>> 136e6bb (new updates)
 }
