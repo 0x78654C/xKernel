@@ -1,5 +1,6 @@
 #include "keyboard.h"  
 <<<<<<< HEAD
+<<<<<<< HEAD
 //#include "source.h"
 #include <sys/io.h>
 
@@ -11,6 +12,10 @@
 
 
 >>>>>>> 136e6bb (new updates)
+=======
+#include <sys/io.h>
+
+>>>>>>> 7a4ccaf (update)
 int clicked = 0;
 int canSend = 0;
 unsigned short* terminal_buffer;
@@ -20,6 +25,18 @@ void print_char(char str, unsigned char color)
 {
     int index = 0;
     
+    terminal_buffer[vga_index] = str | (unsigned short)color << 8;
+    index++;
+    vga_index++;
+}
+
+
+unsigned short* terminal_buffer;
+unsigned int vga_index;
+
+void print_char(char str, unsigned char color)
+{
+    int index = 0;
     terminal_buffer[vga_index] = str | (unsigned short)color << 8;
     index++;
     vga_index++;
