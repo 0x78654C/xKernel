@@ -4,12 +4,13 @@
 
 int clicked = 0;
 int canSend = 0;
+char ch = 0;
 unsigned short* terminal_buffer;
 unsigned int vga_index;
 
 void print_char(char str, unsigned char color)
 {
-    terminal_buffer[vga_index] = str | (unsigned short)color << 8;
+    terminal_buffer[vga_index-1] = str | (unsigned short)color << 8;
     vga_index++;
 }
 
@@ -21,7 +22,6 @@ unsigned char get_scancode()
     return inputdata;
 }
 
-char ch = 0;
 char get_input_keycode()
 {
     ch =0;
@@ -31,7 +31,6 @@ char get_input_keycode()
     }
     return ch;
 }
-
 void keyboard_handler()
 {
     unsigned char scancode;
@@ -39,7 +38,7 @@ void keyboard_handler()
 
     canSend = 0;
     scancode = get_input_keycode();
-    if(scancode != 0)
+    if(ch > 0)
     {
         if (scancode == 0x2A)
         {
@@ -229,9 +228,10 @@ void keyboard_handler()
             if (canSend == 1) {
                 vga_index++;
                 canSend = 0;
-                ch = 0;
+                clicked = 1;
                 print_char(character, WHITE_COLOR);
             }
+            ch = 0;
         }
     }
 }
