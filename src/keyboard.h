@@ -1,6 +1,6 @@
 #ifndef KEYBOARD_DOT_H    /* This is an "include guard" */
 #define KEYBOARD_DOT_H 
-
+#define KEYBOARD_PORT 0x60
 #define VGA_ADDRESS 0xB8000   
 #define BLACK 0
 #define GREEN 2
