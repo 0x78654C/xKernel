@@ -4,7 +4,7 @@
  * 
  */
 #include "keyboard.h"
-
+#include <stdio.h>
 
 #define WHITE_TXT 0x07 /* light gray on black text */
 
@@ -16,9 +16,12 @@ unsigned int x_printf(char *message, unsigned int line);
 /* simple kernel written in C */
 void main() 
 {
+	terminal_buffer = (unsigned short*)VGA_ADDRESS;
+	vga_index=0;
 	clear_screen();
-	x_printf("Hello, world! Welcome to my xKernel.", 0);
-	x_printf("x_Coding",1);
+
+	//x_printf("Hello, world! Welcome to my xKernel.", 0);
+	//x_printf("x_Coding",1);
     while (1) {
         keyboard_handler();
     }
