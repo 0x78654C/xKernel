@@ -12,8 +12,7 @@ void clear_screen();
 unsigned int x_printf(char *message, unsigned int line);
 
 
-
-/* simple kernel written in C */
+// Entry point
 void main() 
 {
 	terminal_buffer = (unsigned short*)VGA_ADDRESS;
