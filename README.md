@@ -1,2 +1,2 @@
 # xKernel
-Simple Linux kernel
+Simple Linux x86 kernel
